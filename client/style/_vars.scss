@@ -29,3 +29,10 @@ $section-selected-title: $bc-green-dark-3;
   border-color: $section-border-color;
   padding: $section-padding;
 }
+
+@mixin section-header(){
+  margin-top:10px;
+  padding-top:0px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

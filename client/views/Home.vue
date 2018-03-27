@@ -3,7 +3,7 @@
     <section class="field-types">
       <div class="field-types__header">Field types</div>
       <b-field class="field-types__name field-input" label="Field types">
-        <b-input value="aaa"></b-input>
+        <b-input value=""></b-input>
       </b-field>
       <ul>
         <li v-for="type in types" :key="type.id">
@@ -13,28 +13,16 @@
         </li>
       </ul>
     </section>
-    <section class="field-details">
-      <div class="field-details__container">
-        <div class="field-details__container__header">Field details</div>
-      </div>
-      <div class="field-details__groups">
-        <div class="field-details__groups__header">
-          Field groups
-        </div>
-        <p class="field-details__groups__subtitle">
-          Choose a group for this input
-        </p>
-      </div>
-    </section>
+    <field-details></field-details>
   </div>
 </template>
 
 <script>
 import FieldType from 'components/FieldType'
-
+import FieldDetails from 'components/FieldDetails'
 export default {
   components: {
-    FieldType
+    FieldType, FieldDetails
   },
   methods: {
     onSelect(payload){
@@ -77,12 +65,6 @@ export default {
 
 <style lang="scss">
 @import '../style/_vars.scss';
-@mixin header(){
-  margin-top:10px;
-  padding-top:0px;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
 .page{
   display: flex;
   flex-direction: row;
@@ -91,64 +73,29 @@ export default {
   &-input{
     margin-top:8px;
     & > label{
-      font-size:0.8rem;
+      font-size: 0.9rem;
+      padding-top: 2px;
+      padding-bottom: 2px;
     }
   }
   &-types{
     @include section();
     overflow: hidden;
     overflow-y: auto;
+    min-width: 200px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     background-color:$section-left-bg;
     width:400px;
     height:500px;
     &__header {
-      @include header();
+      @include section-header();
     }
     &__name {
-      &>label{
-        font-size: 0.9rem;
-        padding-top: 2px;
-        padding-bottom: 2px;
-      }
       padding-bottom:5px;
     }
     &__header {
-      @include header();
-    }
-  }
-  &-details{
-    @include section();
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-left-width: 0px;
-    width: 100%;
-    height:500px;
-    display: flex;
-    flex-direction: row;
-    background-color: $section-main-bg;
-    &__container{
-      flex-grow: 1;
-      &__header{
-        @include header();
-      }
-    }
-    &__groups{
-      @include section();
-      margin-top: 46px;
-      width:200px;
-      height:400px;
-      padding: 8px;
-      &__header{
-        @include header();
-        font-size: 1rem;
-      }
-      &__subtitle{
-        margin-top: 6px;
-        font-size: 0.6rem;
-        color: $section-subtitle-text;
-      }
+      @include section-header();
     }
   }
 }
