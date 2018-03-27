@@ -4,9 +4,28 @@ $bc-green-light-2: #eff4f5;
 $bc-green-medium-2: #dae5e7;
 $bc-green-medium-1: #abc4c8;
 $bc-green-medium: #76b6c0;
-$bc-green-dark: #007d93;
-$bc-green-dark: #405f65;
+$bc-green-dark-1: #007d93;
+$bc-green-dark-2: #405f65;
+$bc-green-dark-3: #405e64;
 
 
 $page-bg: $bc-green-light-1;
-$border-radius: 3px;
+$page-padding:28px;
+$border-radius: 5px;
+
+$section-border-size: 1px;
+$section-padding: 16px;
+$section-border-color: $bc-green-medium-1;
+$section-left-bg: $bc-green-light-2;
+$section-main-bg: $bc-white;
+$section-subtitle-text: $bc-green-dark-3;
+$section-selected-bg: $bc-green-dark-1;
+$section-selected-text: $bc-white;
+$section-selected-title: $bc-green-dark-3;
+
+@mixin section(){
+  border-radius: $border-radius;
+  border: $section-border-size solid;
+  border-color: $section-border-color;
+  padding: $section-padding;
+}
