@@ -4,26 +4,27 @@
       <div class="field-details__container__header">Field details</div>
       <div class="field-details__container__form">
         <b-field class="field-details__container__form__field-params__input field-input" label="Display label">
-          <b-input value="aa"></b-input>
+          <b-input value=""></b-input>
         </b-field>
         <b-field class="field-details__container__form__field-params__input field-input" label="Reference name">
-          <b-input value="vv"></b-input>
+          <b-input value=""></b-input>
         </b-field>
         <b-field class="field-details__container__form__field-params__input field-input" label="Default value">
-          <b-input value="vv"></b-input>
+          <b-input value=""></b-input>
         </b-field>
       </div>
     </div>
-    <div class="field-details__groups">
-      <div class="field-details__groups__header">
-        Field groups
-      </div>
-      <p class="field-details__groups__subtitle">
-        Choose a group for this input
-      </p>
-    </div>
+    <field-groups></field-groups>
   </section>
 </template>
+<script>
+import FieldGroups from './FieldGroups'
+export default {
+  components:{
+    FieldGroups
+  }
+}
+</script>
 <style lang="scss">
 @import '../style/_vars.scss';
 @import "~bulma/sass/utilities/_all";
@@ -64,29 +65,6 @@
           }
         }
       }
-    }
-  }
-  &__groups{
-    @include section();
-    margin-top: 46px;
-    margin-left: 42px;
-    flex-basis: auto;
-    @include tablet() {
-      width: 180px;
-    }
-    @include desktop() {
-      width: 200px;
-    }
-    height:400px;
-    padding: 8px;
-    &__header{
-      @include section-header();
-      font-size: 1rem;
-    }
-    &__subtitle{
-      margin-top: 6px;
-      font-size: 0.6rem;
-      color: $section-subtitle-text;
     }
   }
 }
