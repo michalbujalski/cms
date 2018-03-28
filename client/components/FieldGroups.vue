@@ -13,16 +13,8 @@
 @import "~bulma/sass/utilities/_all";
 .field-groups{
   @include section();
-  margin-top: 46px;
-  margin-left: 42px;
   flex-basis: auto;
-  @include tablet() {
-    width: 180px;
-  }
-  @include desktop() {
-    width: 200px;
-  }
-  height:400px;
+  width: 200px;
   padding: 8px;
   &__header{
     @include section-header();
