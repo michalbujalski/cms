@@ -69,7 +69,7 @@ export default {
   border-bottom-right-radius: 0px;
   background-color:$section-left-bg;
   width:400px;
-  height:500px;
+  height:600px;
   &__header {
     @include section-header();
   }

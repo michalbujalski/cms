@@ -16,16 +16,16 @@
         <b-input class="field-details__form__field-params__input" value=""></b-input>
       </b-field>
     </div>
-    <field-tag-groups class="field-details__field-tag-groups">></field-tag-groups>
+    <field-tags class="field-details__field-tags">></field-tags>
     <field-groups class="field-details__field-groups"></field-groups>
   </section>
 </template>
 <script>
 import FieldGroups from './FieldGroups'
-import FieldTagdGroups from './FieldTagGroups'
+import FieldTags from './FieldTags'
 export default {
   components:{
-    FieldGroups,'field-tag-groups': FieldTagdGroups
+    FieldGroups,'field-tags': FieldTags
   }
 }
 </script>
@@ -38,10 +38,11 @@ export default {
   border-bottom-left-radius: 0px;
   border-left-width: 0px;
   width: 100%;
-  height:500px;
+  height: 600px;
   display: grid;
   grid-template-columns: auto 200px;
-  grid-template-rows: 96px auto 100px;;
+  grid-template-rows: 96px auto 180px;
+  grid-column-gap: 42px;
   background-color: $section-main-bg;
   &__field-tag-groups{
     grid-column-start: 1;
@@ -61,7 +62,7 @@ export default {
   &__form{
     grid-column-start: 1;
     grid-column-end: 2;
-    padding-right: 42px;
+    align-self: start;
     @include desktop(){
       display: flex;
       flex-direction: row;
