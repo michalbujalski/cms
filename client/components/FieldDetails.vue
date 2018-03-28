@@ -3,14 +3,18 @@
     <div class="field-details__container">
       <div class="field-details__container__header">Field details</div>
       <div class="field-details__container__form">
-        <b-field class="field-details__container__form__field-params__input field-input" label="Display label">
-          <b-input value=""></b-input>
+        <b-field class="field-details__container__form__field-params field-input"
+          label="Display label"
+          message="For display purposes, spaces allowed">
+          <b-input class="field-details__container__form__field-params__input" value=""></b-input>
         </b-field>
-        <b-field class="field-details__container__form__field-params__input field-input" label="Reference name">
-          <b-input value=""></b-input>
+        <b-field class="field-details__container__form__field-params field-input"
+          label="Reference name"
+          message="Used to reference in calculations, no spaces allowed">
+          <b-input class="field-details__container__form__field-params__input" value=""></b-input>
         </b-field>
-        <b-field class="field-details__container__form__field-params__input field-input" label="Default value">
-          <b-input value=""></b-input>
+        <b-field class="field-details__container__form__field-params field-input" label="Default value">
+          <b-input class="field-details__container__form__field-params__input" value=""></b-input>
         </b-field>
       </div>
     </div>
