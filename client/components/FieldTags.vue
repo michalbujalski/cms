@@ -8,11 +8,19 @@
       <div class="tags__container__tag-items">
         Tags
       </div>
+      <tag></tag>
+      <tag></tag>
+      <tag></tag>
+      <tag></tag>
     </div>
   </section>
 </template>
 <script>
+import Tag from './Tag'
 export default {
+  components: {
+    Tag
+  }
 }
 </script>
 <style lang="scss">

@@ -8,7 +8,6 @@ $bc-green-dark-1: #007d93;
 $bc-green-dark-2: #405f65;
 $bc-green-dark-3: #405e64;
 
-
 $page-bg: $bc-green-light-1;
 $page-padding:28px;
 $border-radius: 5px;
@@ -22,6 +21,11 @@ $section-subtitle-text: $bc-green-dark-3;
 $section-selected-bg: $bc-green-dark-1;
 $section-selected-text: $bc-white;
 $section-selected-title: $bc-green-dark-3;
+
+$tag-bg: $bc-green-light-2;
+$tag-text: $bc-green-dark-3;
+$tag-bg-selected: $bc-green-dark-1;
+$tag-text-selected: $bc-white;
 
 @mixin section(){
   border-radius: $border-radius;
