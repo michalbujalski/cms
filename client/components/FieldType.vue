@@ -56,8 +56,7 @@ export default {
     font-weight: 500;
   }
   &--selected{
-    background-color: $section-selected-bg;
-    color: $section-selected-text;
+    @include selected();
     & >h5{
       color: rgba(255, 255, 255, 0.8);
     }

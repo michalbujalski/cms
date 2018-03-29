@@ -40,6 +40,10 @@ $group-item-bg: $bc-white;
 
 $field-groups-bg: $bc-green-light-1;
 
+@mixin selected(){
+  background-color: $section-selected-bg;
+  color: $section-selected-text;
+}
 
 @mixin section(){
   border-radius: $border-radius;
