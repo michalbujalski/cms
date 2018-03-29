@@ -3,15 +3,38 @@
     <div class="tags__header">Tags</div>
     <div class="tags__container">
       <div class="tags__container__group">
-        Tag group
+        <h6 class="tags__container__group__header">Tag group</h6>
+        <div class="tags__container__group__tags">
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+        </div>
       </div>
       <div class="tags__container__tag-items">
-        Tags
+        <h6 class="tags__container__tag-items__header">Tags</h6>
+        <div class="tags__container__tag-items__tags">
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+          <tag></tag>
+        </div>
       </div>
-      <tag></tag>
-      <tag></tag>
-      <tag></tag>
-      <tag></tag>
     </div>
   </section>
 </template>
@@ -24,32 +47,49 @@ export default {
 }
 </script>
 <style lang="scss">
-.tags{
+@mixin header(){
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+@mixin tags(){
   display: flex;
-  flex-direction: column;
-  font-size: 16px;
-  align-items: stretch;
   flex-wrap: wrap;
+  flex-direction: row;
+  padding-top: 8px;
+}
+.tags{
+  font-size: 16px;
   &__container{
     display: flex;
-    flex-grow: 1;
     flex-direction: row;
     flex-wrap: wrap;
     &__group{
-      min-width: 200px;
-      flex-grow: 1;
+      flex: 1;
+      min-width: 150px;
+      &__header{
+        @include header();
+      }
+      &__tags{
+        @include tags();
+      }
     }
     &__tag-items{
-      min-width: 200px;
-      flex-grow: 1;
+      flex: 1;
+      min-width: 150px;
+      &__header{
+        @include header();
+      }
+      &__tags{
+        @include tags();
+      }
     }
   }
   &__header{
     align-self: left;
-    font-size: 16px;
+    font-size: 1rem;
     align-self: stretch;
     font-weight: bold;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     padding-top: 8px;
   }
 }

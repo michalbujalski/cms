@@ -40,8 +40,8 @@ export default {
   width: 100%;
   height: 600px;
   display: grid;
-  grid-template-columns: auto 200px;
-  grid-template-rows: 96px auto 180px;
+  grid-template-columns: auto 275px;
+  grid-template-rows: 46px auto 180px;
   grid-column-gap: 42px;
   background-color: $section-main-bg;
   &__field-tag-groups{
