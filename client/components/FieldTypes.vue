@@ -60,11 +60,18 @@ export default {
 
 <style lang="scss">
 @import '../style/_vars.scss';
+@import "~bulma/sass/utilities/_all";
 .field-types{
   @include section();
   overflow: hidden;
   overflow-y: auto;
-  width: 300px;
+  @include mobile(){
+    width: $field-types-width-mobile;
+  }
+  @include tablet-only(){
+    width: $field-types-width-tablet;
+  }
+  width: $field-types-width-desktop;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   background-color:$section-left-bg;
