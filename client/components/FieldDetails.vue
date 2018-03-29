@@ -38,7 +38,6 @@ export default {
   border-bottom-left-radius: 0px;
   border-left-width: 0px;
   width: 100%;
-  height: 600px;
   display: grid;
   grid-template-columns: auto 275px;
   grid-template-rows: 46px auto 180px;
@@ -62,7 +61,6 @@ export default {
   &__form{
     grid-column-start: 1;
     grid-column-end: 2;
-    align-self: start;
     @include desktop(){
       display: flex;
       flex-direction: row;
@@ -78,7 +76,7 @@ export default {
           width: 280px;
         }
         @include tablet-only(){
-          width:350px;
+          width:300px;
         }
         @include mobile(){
           width:150px;

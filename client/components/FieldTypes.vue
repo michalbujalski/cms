@@ -64,12 +64,10 @@ export default {
   @include section();
   overflow: hidden;
   overflow-y: auto;
-  min-width: 200px;
+  width: 300px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   background-color:$section-left-bg;
-  width:400px;
-  height:600px;
   &__header {
     @include section-header();
   }

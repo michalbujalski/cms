@@ -1,7 +1,8 @@
 <template>
-  <div class="page">
-    <field-types></field-types>
-    <field-details></field-details>
+  <div class="field-add">
+    <field-types class="field-add__types"></field-types>
+    <field-details class="field-add__details"></field-details>
+    <div class="field-add__controls">Controls</div>
   </div>
 </template>
 
@@ -17,9 +18,24 @@ export default {
 
 <style lang="scss">
 @import '../style/_vars.scss';
-.page{
-  display: flex;
-  flex-direction: row;
+.field-add{
+  display: grid;
+  grid-template-rows: auto 72px;
+  grid-template-columns: 300px auto;
+  &__types{
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  &__details{
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+  &__controls{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding-top: 20px;
+    font-size: 0.8rem;
+  }
 }
 .field{
   &-input{
