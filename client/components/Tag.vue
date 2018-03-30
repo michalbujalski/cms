@@ -3,7 +3,7 @@
     @click="onClick"
     class="tag"
     :class="{'tag--selected': selected}">
-    Tag
+    {{name}}
   </div>
 </template>
 <script>
@@ -11,6 +11,12 @@ export default {
   data () {
     return {
       selected: false
+    }
+  },
+  props: {
+    name: {
+      type: String,
+      required: true
     }
   },
   methods: {

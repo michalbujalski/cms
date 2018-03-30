@@ -5,34 +5,12 @@
       <div class="tags__container__group">
         <h6 class="tags__container__group__header">Tag group</h6>
         <div class="tags__container__group__tags">
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
+          <tag v-for="tagGroup in tagGroups" :key="tagGroup.name" :name="tagGroup.name"></tag>
         </div>
       </div>
       <div class="tags__container__tag-items">
         <h6 class="tags__container__tag-items__header">Tags</h6>
         <div class="tags__container__tag-items__tags">
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
-          <tag></tag>
         </div>
       </div>
     </div>
@@ -43,6 +21,12 @@ import Tag from './Tag'
 export default {
   components: {
     Tag
+  },
+  props:{
+    tagGroups: {
+      type: Array,
+      default: []
+    }
   }
 }
 </script>

@@ -20,7 +20,7 @@
         <b-input class="field-details__form__field-params__input" v-model="validationRegex"></b-input>
       </b-field>
     </div>
-    <field-tags class="field-details__field-tags">></field-tags>
+    <field-tags :tagGroups="tagGroups" class="field-details__field-tags">></field-tags>
     <field-groups class="field-details__field-groups"></field-groups>
   </section>
 </template>
@@ -41,6 +41,10 @@ export default {
     }
   },
   props: {
+    tagGroups: {
+      type: Array,
+      default: []
+    }
   },
   computed: {
     newFieldForm () {

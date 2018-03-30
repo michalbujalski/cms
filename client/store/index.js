@@ -36,9 +36,17 @@ const state = {
       defaultDisplay: 'Free-form text input'
     }
   ],
-  tagGroups: [
-
-  ]
+  tagGroups: {
+    'vinmaster': [
+      'vinmaster#1', 'vinmaster#2', 'vinmaster#3'
+    ],
+    'ISO': [
+      'iso#1', 'iso#2'
+    ],
+    'tag3': [
+      'tag1', 'tag2', 'tag3', 'tag4'
+    ]
+  }
 }
 
 const mutations = {
@@ -69,7 +77,11 @@ const actions = {
 
 const getters = {
   fieldTypes: state => state.fieldTypes,
-  newFieldType: state => state.newField.type
+  newFieldType: state => state.newField.type,
+  tagGroups: state => Object.keys(state.tagGroups)
+    .map(key => {
+      return { ...state.tagGroups[key], name: key }
+    })
 }
 
 const store = new Vuex.Store({
