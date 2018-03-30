@@ -10,7 +10,7 @@ const state = {
     defaultValue: '',
     validationRegex: '',
     referenceName: '',
-    tags: [],
+    tags: ['iso#1'],
     groups: []
   },
   fieldTypes: [
@@ -80,7 +80,27 @@ const getters = {
   newFieldType: state => state.newField.type,
   tagGroups: state => Object.keys(state.tagGroups)
     .map(key => {
-      return { ...state.tagGroups[key], name: key }
+      return {
+        name: key,
+        tags: state.tagGroups[key].map(tag => {
+          return {
+            name: tag,
+            selected: state.newField.tags.includes(tag)
+          }
+        }),
+        selected:
+          [].concat.apply(
+            [], state.tagGroups[key]
+          )
+          .map(tag => {
+            return tag
+          })
+          .reduce(
+            (prev, current) => {
+              prev |= state.newField.tags.includes(current)
+              return prev
+            }, false)
+      }
     })
 }
 

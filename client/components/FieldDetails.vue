@@ -43,7 +43,7 @@ export default {
   props: {
     tagGroups: {
       type: Array,
-      default: []
+      default: () => []
     }
   },
   computed: {

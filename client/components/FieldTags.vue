@@ -5,12 +5,16 @@
       <div class="tags__container__group">
         <h6 class="tags__container__group__header">Tag group</h6>
         <div class="tags__container__group__tags">
-          <tag v-for="tagGroup in tagGroups" :key="tagGroup.name" :name="tagGroup.name"></tag>
+          <tag v-for="tagGroup in tagGroups"
+            :key="tagGroup.name"
+            :name="tagGroup.name"
+            :selected="tagGroup.selected"></tag>
         </div>
       </div>
       <div class="tags__container__tag-items">
         <h6 class="tags__container__tag-items__header">Tags</h6>
         <div class="tags__container__tag-items__tags">
+          <tag v-for="tag in tags" :key="tag" :name="tag.name" :selected="tag.selected"></tag>
         </div>
       </div>
     </div>
@@ -25,7 +29,20 @@ export default {
   props:{
     tagGroups: {
       type: Array,
-      default: []
+      default: () => []
+    }
+  },
+  mounted () {
+    console.log(this.tagGroups)
+  },
+  computed: {
+    tags () {
+      return [].concat.apply(
+        [],
+        this.tagGroups
+          .filter(group=>group.selected)
+          .map(group=>group.tags)
+      )
     }
   }
 }

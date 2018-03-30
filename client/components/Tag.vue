@@ -8,20 +8,19 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      selected: false
-    }
-  },
   props: {
     name: {
       type: String,
       required: true
+    },
+    selected: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
     onClick () {
-      this.selected = !this.selected
+      // this.selected = !this.selected
     }
   }
 }
