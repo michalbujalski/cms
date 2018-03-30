@@ -5,9 +5,12 @@ $bc-green-medium-2: #dae5e7;
 $bc-green-medium-1: #abc4c8;
 $bc-green-medium: #76b6c0;
 $bc-green-dark-1: #007d93;
+$bc-green-dark-4: #008aa3;
 $bc-green-dark-2: #405f65;
 $bc-green-dark-3: #405e64;
 $bc-very-dark: #202627;
+$bc-red: #a72026;
+$bc-black: #000000;
 
 $page-bg: $bc-green-light-1;
 $page-padding:28px;
@@ -44,6 +47,11 @@ $group-item-bg: $bc-white;
 
 $field-groups-bg: $bc-green-light-1;
 
+$btn-action-confirm-bg: $bc-green-dark-4;
+$btn-action-cancel-bg: $bc-white;
+$btn-action-delete-bg: $bc-red;
+$btn-action-cancel-text: $bc-black;
+
 @mixin selected(){
   background-color: $section-selected-bg;
   color: $section-selected-text;
@@ -61,4 +69,43 @@ $field-groups-bg: $bc-green-light-1;
   padding-top:0px;
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+
+@mixin btn-action-confirm{
+  @include btn-action;
+  background-color: $btn-action-confirm-bg;
+  &:hover{
+    color: $bc-white;
+    background-color: lighten($color:$btn-action-confirm-bg, $amount: 2%)
+  }
+  &:focus{
+    color: $bc-white;
+  }
+}
+@mixin btn-action-cancel{
+  @include btn-action;
+  color: $btn-add-group-text;
+  background-color: $btn-action-cancel-bg;
+  &:hover{
+    background-color: rgba(0, 0, 0, 0.01);
+  }
+}
+@mixin btn-action-delete{
+  @include btn-action;
+  background-color: $btn-action-delete-bg;
+  &:hover{
+    color: $bc-white;
+    background-color: lighten($color: $btn-action-delete-bg, $amount: 2%)
+  }
+  &:focus{
+    color: $bc-white;
+  }
+}
+@mixin btn-action{
+  height: 40px;
+  width: 150px;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: $bc-white;
 }
