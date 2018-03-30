@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <nav></nav>
     <router-view></router-view>
   </div>
 </template>
@@ -32,8 +33,6 @@ $link-focus-border: $primary;
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
-// Set your colors
-$primary: #ff0000;
 body {
   margin: 0;
   font-size: 2rem;
@@ -44,6 +43,9 @@ body {
                'segoe ui', arial,
                sans-serif;
   background-color: $page-bg;
-  padding: $page-padding;
+}
+nav{
+  height: 40px;
+  background-color: $nav-bg;
 }
 </style>

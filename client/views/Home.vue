@@ -26,6 +26,7 @@ export default {
 @import '../style/_vars.scss';
 @import "~bulma/sass/utilities/_all";
 .field-add{
+  padding: $page-padding;
   display: grid;
   grid-template-rows: auto auto 72px;
   grid-template-columns: $field-types-width-desktop auto;
