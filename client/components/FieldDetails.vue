@@ -66,6 +66,7 @@ export default {
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
+      align-content: flex-start;
     }
     &__field-params{
       &__field-groups{
