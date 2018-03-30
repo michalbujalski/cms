@@ -31,7 +31,6 @@ export default {
   },
   methods: {
     onSelect(payload){
-      console.log('emit')
       this.$emit('on-select',{ id: payload.id })
     }
   },

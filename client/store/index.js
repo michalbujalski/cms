@@ -9,6 +9,7 @@ const state = {
     displayLabel: '',
     defaultValue: '',
     validationRegex: '',
+    referenceName: '',
     tags: [],
     groups: []
   },
@@ -44,8 +45,14 @@ const mutations = {
   setFieldType (state, { id }) {
     Vue.set(state.newField, 'type', id)
   },
-  INCREMENT (state) {
-    state.count++
+  updateFormField (state, { displayLabel, defaultValue, validationRegex, referenceName }) {
+    Vue.set(state, 'newField',
+      { ...state.newField,
+        displayLabel: displayLabel,
+        defaultValue: defaultValue,
+        validationRegex: validationRegex,
+        referenceName: referenceName
+      })
   },
   DECREMENT (state) {
     state.count--
