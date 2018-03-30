@@ -10,7 +10,7 @@
       <b-field class="field-details__form__field-params field-input"
         label="Reference name"
         message="Used to reference in calculations, no spaces allowed">
-        <b-input class="field-details__form__field-params__input" @change="referenceNameChange" v-model="referenceName"></b-input>
+        <b-input class="field-details__form__field-params__input" v-model="referenceName"></b-input>
       </b-field>
       <b-field class="field-details__form__field-params field-input" label="Default value">
         <b-input class="field-details__form__field-params__input" v-model="defaultValue"></b-input>
