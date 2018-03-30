@@ -11,7 +11,8 @@ const state = {
     validationRegex: '',
     referenceName: '',
     tags: ['iso#1'],
-    groups: []
+    groups: [],
+    selectedTagGroups: []
   },
   fieldTypes: [
     {
@@ -53,14 +54,17 @@ const mutations = {
   setFieldType (state, { id }) {
     Vue.set(state.newField, 'type', id)
   },
-  updateFormField (state, { displayLabel, defaultValue, validationRegex, referenceName }) {
+  updateFormField (state, { displayLabel, defaultValue, validationRegex, referenceName, selectedTags, selectedTagGroups }) {
     Vue.set(state, 'newField',
       { ...state.newField,
         displayLabel: displayLabel,
         defaultValue: defaultValue,
         validationRegex: validationRegex,
-        referenceName: referenceName
-      })
+        referenceName: referenceName,
+        tags: selectedTags,
+        selectedTagGroups: selectedTagGroups
+      }
+    )
   },
   DECREMENT (state) {
     state.count--
@@ -88,18 +92,19 @@ const getters = {
             selected: state.newField.tags.includes(tag)
           }
         }),
-        selected:
-          [].concat.apply(
-            [], state.tagGroups[key]
-          )
-          .map(tag => {
-            return tag
-          })
-          .reduce(
-            (prev, current) => {
-              prev |= state.newField.tags.includes(current)
-              return prev
-            }, false)
+        selected: state.newField.selectedTagGroups.includes(key)
+          // [].concat.apply(
+          //   [], state.tagGroups[key]
+          // )
+          // .map(tag => {
+          //   return tag
+          // })
+          // .reduce(
+          //   (prev, current) => {
+          //     const a = state.newField.selectedTagGroups.includes(current)
+          //     console.log(prev + ' ' + current)
+          //     return prev || a
+          //   }, false)
       }
     })
 }

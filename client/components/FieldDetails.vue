@@ -20,7 +20,12 @@
         <b-input class="field-details__form__field-params__input" v-model="validationRegex"></b-input>
       </b-field>
     </div>
-    <field-tags :tagGroups="tagGroups" class="field-details__field-tags">></field-tags>
+    <field-tags
+      @on-tags-update="updateTags"
+      :tagGroups="tagGroups"
+      :selectedTagGroups="selectedTagGroups"
+      @on-group-tag-update="updateGroupTags"
+      class="field-details__field-tags"></field-tags>
     <field-groups class="field-details__field-groups"></field-groups>
   </section>
 </template>
@@ -37,7 +42,9 @@ export default {
       displayLabel: '',
       defaultValue: '',
       validationRegex: '',
-      referenceName: ''
+      referenceName: '',
+      selectedTags: [],
+      selectedTagGroups: []
     }
   },
   props: {
@@ -48,13 +55,14 @@ export default {
   },
   computed: {
     newFieldForm () {
-      const newForm = {
+      return {
         displayLabel: this.displayLabel,
         defaultValue: this.defaultValue,
         validationRegex: this.validationRegex,
-        referenceName: this.referenceName
+        referenceName: this.referenceName,
+        selectedTags: this.selectedTags,
+        selectedTagGroups: this.selectedTagGroups
       }
-      return newForm
     },
   },
   watch:{
@@ -66,7 +74,13 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['updateFormField'])
+    ...mapMutations(['updateFormField']),
+    updateGroupTags ({groupTags}) {
+      this.selectedTagGroups = groupTags
+    },
+    updateTags ({ tags }) {
+      this.selectedTags = tags
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div
-    @click="onClick"
+    @click="toggleSelected"
     class="tag"
     :class="{'tag--selected': selected}">
     {{name}}
@@ -19,8 +19,8 @@ export default {
     }
   },
   methods: {
-    onClick () {
-      // this.selected = !this.selected
+    toggleSelected () {
+      this.$emit('on-select', this.name)
     }
   }
 }

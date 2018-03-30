@@ -8,13 +8,20 @@
           <tag v-for="tagGroup in tagGroups"
             :key="tagGroup.name"
             :name="tagGroup.name"
-            :selected="tagGroup.selected"></tag>
+            :selected="tagGroup.selected"
+            @on-select="toggleGroupTagSelect"
+            ></tag>
         </div>
       </div>
       <div class="tags__container__tag-items">
         <h6 class="tags__container__tag-items__header">Tags</h6>
         <div class="tags__container__tag-items__tags">
-          <tag v-for="tag in tags" :key="tag" :name="tag.name" :selected="tag.selected"></tag>
+          <tag v-for="tag in tags"
+            :key="tag.name"
+            :name="tag.name"
+            :selected="tag.selected"
+            @on-select="toggleTagSelect">
+          </tag>
         </div>
       </div>
     </div>
@@ -22,6 +29,7 @@
 </template>
 <script>
 import Tag from './Tag'
+
 export default {
   components: {
     Tag
@@ -30,10 +38,33 @@ export default {
     tagGroups: {
       type: Array,
       default: () => []
+    },
+    selectedTagGroup: {
+      type: Array,
+      default: () => []
     }
   },
-  mounted () {
-    console.log(this.tagGroups)
+  methods: {
+    getSelected ({name, tags}) {
+      const rawTags = tags.filter(tag=>tag.selected).map(tag=>tag.name)
+      if(rawTags.includes(name)){
+        return rawTags.filter(tagName=>tagName !== name)
+      }else{
+        return rawTags.concat(name)
+      }
+    },
+    toggleGroupTagSelect (groupTagName) {
+      this.$emit('on-group-tag-update', {
+        groupTags: this.getSelected({ name: groupTagName, tags: this.tagGroups })
+      })
+    },
+    toggleTagSelect (tagName) {
+      this.$emit('on-tags-update',
+        {
+          tags: this.getSelected({ name: tagName, tags: this.tags })
+        }
+      )
+    }
   },
   computed: {
     tags () {
