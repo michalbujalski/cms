@@ -60,10 +60,16 @@ const actions = {
   }
 }
 
+const getters = {
+  fieldTypes: state => state.fieldTypes,
+  newFieldType: state => state.newField.type
+}
+
 const store = new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
+  getters
 })
 
 export default store
