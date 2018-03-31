@@ -45,6 +45,13 @@ export default {
     }
   },
   methods: {
+    notifyTagsChanged (tags) {
+      this.$emit('on-tags-update',
+        {
+          tags: tags
+        }
+      )
+    },
     getSelected ({name, tags}) {
       const rawTags = tags.filter(tag=>tag.selected).map(tag=>tag.name)
       if(rawTags.includes(name)){
@@ -54,16 +61,22 @@ export default {
       }
     },
     toggleGroupTagSelect (groupTagName) {
+      const selectedGroupsKeys = this.getSelected({ name: groupTagName, tags: this.tagGroups })
       this.$emit('on-group-tag-update', {
-        groupTags: this.getSelected({ name: groupTagName, tags: this.tagGroups })
+        groupTags: selectedGroupsKeys
       })
+      const selectedTagsRaw = this.tagGroups
+        .filter( tagGroup => selectedGroupsKeys.includes(tagGroup.name))
+        .map(tagGroup => tagGroup.tags)
+        .reduce((prev, next)=>{
+          return prev.concat(next)
+        }, [])
+        .map(tag=>tag.name)
+      
+      this.notifyTagsChanged(selectedTagsRaw)
     },
     toggleTagSelect (tagName) {
-      this.$emit('on-tags-update',
-        {
-          tags: this.getSelected({ name: tagName, tags: this.tags })
-        }
-      )
+      this.notifyTagsChanged(this.getSelected({ name: tagName, tags: this.tags }))
     }
   },
   computed: {
