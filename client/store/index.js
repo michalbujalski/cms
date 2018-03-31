@@ -47,6 +47,12 @@ const state = {
     'tag3': [
       'tag1', 'tag2', 'tag3', 'tag4'
     ]
+  },
+  fieldGroups: {
+    'group#1': {
+      title: 'Rental Vehicle Coverage Package',
+      usagesNum: 7
+    }
   }
 }
 
@@ -93,19 +99,11 @@ const getters = {
           }
         }),
         selected: state.newField.selectedTagGroups.includes(key)
-          // [].concat.apply(
-          //   [], state.tagGroups[key]
-          // )
-          // .map(tag => {
-          //   return tag
-          // })
-          // .reduce(
-          //   (prev, current) => {
-          //     const a = state.newField.selectedTagGroups.includes(current)
-          //     console.log(prev + ' ' + current)
-          //     return prev || a
-          //   }, false)
       }
+    }),
+  fieldGroups: state => Object.keys(state.fieldGroups)
+    .map(key => {
+      return { ...state.fieldGroups[key], id: key }
     })
 }
 

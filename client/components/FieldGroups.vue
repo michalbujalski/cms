@@ -7,13 +7,11 @@
       Choose a group for this input
     </p>
     <div class="field-groups__groups-list">
-      <field-group-item class="field-groups__groups-list__item"></field-group-item>
-      <field-group-item class="field-groups__groups-list__item"></field-group-item>
-      <field-group-item class="field-groups__groups-list__item"></field-group-item>
-      <field-group-item class="field-groups__groups-list__item"></field-group-item>
-      <field-group-item class="field-groups__groups-list__item"></field-group-item>
-      <field-group-item class="field-groups__groups-list__item"></field-group-item>
-      <field-group-item class="field-groups__groups-list__item"></field-group-item>
+      <field-group-item
+        v-for="group in fieldGroups" :key="group.id"
+        :title="group.title"
+        :usagesNum="group.usagesNum"
+        class="field-groups__groups-list__item"></field-group-item>
     </div>
     <button class="button field-groups__add-button">Add A New Group</button>
   </div>
@@ -21,8 +19,14 @@
 <script>
 import FieldGroupItem from './FieldGroupItem'
 export default {
-  components:{
+  components: {
     'field-group-item': FieldGroupItem
+  },
+  props: {
+    fieldGroups: {
+      type: Array,
+      default: []
+    }
   }
 }
 </script>

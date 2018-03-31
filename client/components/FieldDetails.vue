@@ -26,7 +26,9 @@
       :selectedTagGroups="selectedTagGroups"
       @on-group-tag-update="updateGroupTags"
       class="field-details__field-tags"></field-tags>
-    <field-groups class="field-details__field-groups"></field-groups>
+    <field-groups
+      :fieldGroups="fieldGroups"
+      class="field-details__field-groups"></field-groups>
   </section>
 </template>
 <script>
@@ -49,6 +51,10 @@ export default {
   },
   props: {
     tagGroups: {
+      type: Array,
+      default: () => []
+    },
+    fieldGroups: {
       type: Array,
       default: () => []
     }
