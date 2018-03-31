@@ -53,6 +53,7 @@ $btn-action-confirm-bg: $bc-green-dark-4;
 $btn-action-cancel-bg: $bc-white;
 $btn-action-delete-bg: $bc-red;
 $btn-action-cancel-text: $bc-black;
+$btn-action-outline: $bc-green-medium-1;
 
 @mixin selected(){
   background-color: $section-selected-bg;
@@ -110,4 +111,9 @@ $btn-action-cancel-text: $bc-black;
   font-weight: 500;
   font-size: 0.92rem;
   color: $bc-white;
+  &:focus{
+    outline-color: $btn-action-outline;
+    outline-width: 4px;
+    outline-offset: -2px;
+  }
 }

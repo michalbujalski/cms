@@ -53,6 +53,13 @@ const state = {
       title: 'Rental Vehicle Coverage Package',
       usagesNum: 7
     }
+  },
+  newGroup: {
+    isActive: false,
+    title: '',
+    isLoading: false,
+    error: null,
+    isSuccess: false
   }
 }
 
@@ -72,16 +79,36 @@ const mutations = {
       }
     )
   },
-  DECREMENT (state) {
-    state.count--
+  toggleNewGroupActive (state, { isActive }) {
+    Vue.set(state, 'newGroup', { ...state.newGroup, isActive: isActive, title: '' })
+  },
+  updateNewGroup (state, { title }) {
+    Vue.set(state, 'newGroup', { ...state.newGroup, title: title })
+  },
+  initNewGroupCreate (state) {
+    Vue.set(state, 'newGroup', { ...state.newGroup, isLoading: true, error: null, isSuccess: false })
+  },
+  endNewGroupCreate (state, { isSuccess, error }) {
+    Vue.set(state, 'newGroup', { ...state.newGroup, isLoading: false, error: error, isSuccess: isSuccess })
+  },
+  addFieldGroup (state, { group }) {
+    Vue.set(state, 'fieldGroups', { ...state.fieldGroups, [group.id]: group })
   }
 }
 
 const actions = {
-  incrementAsync ({ commit }) {
+  uploadGroup ({ commit }, { group }) {
+    commit('initNewGroupCreate')
     setTimeout(() => {
-      commit('INCREMENT')
-    }, 200)
+      commit('endNewGroupCreate', { isSuccess: true, error: null })
+      commit('toggleNewGroupActive', { isActive: false })
+      // mock server response
+      commit('addFieldGroup', {
+        group: {
+          id: group.title, title: group.title, usageNum: 0
+        }
+      })
+    }, 1000)
   }
 }
 
@@ -104,7 +131,8 @@ const getters = {
   fieldGroups: state => Object.keys(state.fieldGroups)
     .map(key => {
       return { ...state.fieldGroups[key], id: key }
-    })
+    }),
+  newGroup: state => state.newGroup
 }
 
 const store = new Vuex.Store({
