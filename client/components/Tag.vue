@@ -1,21 +1,26 @@
 <template>
   <div
-    @click="onClick"
+    @click="toggleSelected"
     class="tag"
     :class="{'tag--selected': selected}">
-    Tag
+    {{name}}
   </div>
 </template>
 <script>
 export default {
-  data () {
-    return {
-      selected: false
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    selected: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
-    onClick () {
-      this.selected = !this.selected
+    toggleSelected () {
+      this.$emit('on-select', this.name)
     }
   }
 }

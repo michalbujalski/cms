@@ -1,8 +1,8 @@
 <template>
   <div class="field-add">
     <h1 class="field-add__header">Commercial Property - Add Field</h1>
-    <field-types class="field-add__types"></field-types>
-    <field-details class="field-add__details"></field-details>
+    <field-types :types="fieldTypes" :currentType="newFieldType" @on-select="onTypeSelect" class="field-add__types"></field-types>
+    <field-details class="field-add__details" :tagGroups="tagGroups"></field-details>
     <div class="field-add__controls">
       <button class="button field-add__controls__btn-save">Save Changes</button>
       <span class="field-add__controls__void"></span>
@@ -15,9 +15,19 @@
 <script>
 import FieldDetails from 'components/FieldDetails'
 import FieldTypes from 'components/FieldTypes'
+import {mapGetters, mapMutations} from 'vuex'
 export default {
   components: {
     FieldDetails, FieldTypes
+  },
+  methods: {
+    ...mapMutations(['setFieldType']),
+    onTypeSelect({id}){
+      this.setFieldType({id})
+    }
+  },
+  computed: {
+    ...mapGetters(['fieldTypes', 'newFieldType', 'tagGroups'])
   }
 }
 </script>

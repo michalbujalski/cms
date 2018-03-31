@@ -7,7 +7,7 @@
     <ul>
       <li v-for="type in types" :key="type.id">
         <field-type @on-select="onSelect" 
-          :selected="type.id === currentlySelectedId"
+          :selected="type.id === currentType"
           :field-type="type"></field-type>
       </li>
     </ul>
@@ -19,40 +19,26 @@ export default {
   components: {
     FieldType
   },
+  props: {
+    types: {
+      type: Array,
+      default: () => []
+    },
+    currentType: {
+      type: Number,
+      required: true
+    }
+  },
   methods: {
     onSelect(payload){
-      this.currentlySelectedId = payload.id
+      this.$emit('on-select',{ id: payload.id })
     }
   },
   mounted(){
-    this.currentlySelectedId = this.types[0].id
   },
   data () {
     return {
-      currentlySelectedId: 0,
-      types: [
-        {
-          id: 1,
-          icon: "icon-text",
-          name: "Text",
-          definition: "String of text",
-          defaultDisplay: "Free-form text input"
-        },
-        {
-          id: 2,
-          icon: "icon-date",
-          name: "Date",
-          definition: "Standard ISO format date",
-          defaultDisplay: "Datepicker, with configurable format"
-        },
-        {
-          id: 3,
-          icon: "icon-car",
-          name: "VIN",
-          definition: "Vehicle Identification Number",
-          defaultDisplay: "Free-form text input"
-        }
-      ]
+      currentlySelectedId: 0
     }
   }
 }

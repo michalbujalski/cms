@@ -5,27 +5,82 @@
       <b-field class="field-details__form__field-params field-input"
         label="Display label"
         message="For display purposes, spaces allowed">
-        <b-input class="field-details__form__field-params__input" value=""></b-input>
+        <b-input class="field-details__form__field-params__input" v-model="displayLabel"></b-input>
       </b-field>
       <b-field class="field-details__form__field-params field-input"
         label="Reference name"
         message="Used to reference in calculations, no spaces allowed">
-        <b-input class="field-details__form__field-params__input" value=""></b-input>
+        <b-input class="field-details__form__field-params__input" v-model="referenceName"></b-input>
       </b-field>
       <b-field class="field-details__form__field-params field-input" label="Default value">
-        <b-input class="field-details__form__field-params__input" value=""></b-input>
+        <b-input class="field-details__form__field-params__input" v-model="defaultValue"></b-input>
+      </b-field>
+      <b-field class="field-details__form__field-params field-input" label="Default validation"
+        message="Any regex pattern can be used for input validation">
+        <b-input class="field-details__form__field-params__input" v-model="validationRegex"></b-input>
       </b-field>
     </div>
-    <field-tags class="field-details__field-tags">></field-tags>
+    <field-tags
+      @on-tags-update="updateTags"
+      :tagGroups="tagGroups"
+      :selectedTagGroups="selectedTagGroups"
+      @on-group-tag-update="updateGroupTags"
+      class="field-details__field-tags"></field-tags>
     <field-groups class="field-details__field-groups"></field-groups>
   </section>
 </template>
 <script>
 import FieldGroups from './FieldGroups'
 import FieldTags from './FieldTags'
+import {mapMutations} from 'vuex'
 export default {
-  components:{
+  components: {
     FieldGroups,'field-tags': FieldTags
+  },
+  data () {
+    return {
+      displayLabel: '',
+      defaultValue: '',
+      validationRegex: '',
+      referenceName: '',
+      selectedTags: [],
+      selectedTagGroups: []
+    }
+  },
+  props: {
+    tagGroups: {
+      type: Array,
+      default: () => []
+    }
+  },
+  computed: {
+    newFieldForm () {
+      return {
+        displayLabel: this.displayLabel,
+        defaultValue: this.defaultValue,
+        validationRegex: this.validationRegex,
+        referenceName: this.referenceName,
+        selectedTags: this.selectedTags,
+        selectedTagGroups: this.selectedTagGroups
+      }
+    },
+  },
+  watch:{
+    displayLabel (value){
+      this.referenceName = value.split(' ').join('_')
+    },
+    newFieldForm (value) {
+      this.updateFormField(value)
+    }
+  },
+  methods: {
+    ...mapMutations(['updateFormField']),
+    updateGroupTags ({groupTags}) {
+      this.selectedTagGroups = groupTags
+    },
+    updateTags ({ tags }) {
+      this.selectedTags = tags
+    }
   }
 }
 </script>
@@ -41,7 +96,7 @@ export default {
   display: grid;
   grid-template-columns: auto 275px;
   grid-template-rows: 46px auto 180px;
-  grid-column-gap: 42px;
+  grid-column-gap: 30px;
   background-color: $section-main-bg;
   &__field-tag-groups{
     grid-column-start: 1;
@@ -69,6 +124,9 @@ export default {
       align-content: flex-start;
     }
     &__field-params{
+      &:nth-child(3){
+        margin-right: 100%;
+      }
       &__field-groups{
         align-self: flex-end;
       }
