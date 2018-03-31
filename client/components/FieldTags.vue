@@ -52,6 +52,7 @@ export default {
         }
       )
     },
+    //Toggle (append or delete) tag
     getSelected ({name, tags}) {
       const rawTags = tags.filter(tag=>tag.selected).map(tag=>tag.name)
       if(rawTags.includes(name)){
@@ -65,6 +66,8 @@ export default {
       this.$emit('on-group-tag-update', {
         groupTags: selectedGroupsKeys
       })
+
+      //If group uselected unselect also tags belonging to it
       const selectedTagsRaw = this.tagGroups
         .filter( tagGroup => selectedGroupsKeys.includes(tagGroup.name))
         .map(tagGroup => tagGroup.tags)
