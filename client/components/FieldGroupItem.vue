@@ -7,6 +7,14 @@
 <script>
 export default {
   props: {
+    id: {
+      type: String,
+      required: true
+    },
+    selected:{
+      type: Boolean,
+      default: false
+    },
     usagesNum: {
       type: Number,
       default: 0
@@ -16,14 +24,9 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      selected: false
-    }
-  },
   methods: {
     toggleSelected (){
-      this.selected = !this.selected
+      this.$emit('on-select', { id: this.id })
     }
   }
 }

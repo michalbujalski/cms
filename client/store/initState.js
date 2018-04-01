@@ -7,7 +7,8 @@ export default {
     referenceName: '',
     tags: ['iso#1'],
     groups: [],
-    selectedTagGroups: []
+    selectedTagGroups: [],
+    fieldGroup: null
   },
   fieldTypes: [
     {

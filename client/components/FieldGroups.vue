@@ -11,6 +11,9 @@
         v-for="group in fieldGroups" :key="group.id"
         :title="group.title"
         :usagesNum="group.usagesNum"
+        :id="group.id"
+        :selected="selectedGroup === group.id"
+        @on-select="toggleGroupSelect"
         class="field-groups__groups-list__item"></field-group-item>
     </div>
     <field-group-create
@@ -37,6 +40,9 @@ export default {
     'field-group-create': FieldGroupCreate
   },
   props: {
+    selectedGroup: {
+      type: String
+    },
     fieldGroups: {
       type: Array,
       default: []
@@ -46,8 +52,11 @@ export default {
     ...mapGetters(['newGroup'])
   },
   methods: {
-    ...mapMutations(['updateNewGroup', 'toggleNewGroupActive']),
+    ...mapMutations(['updateNewGroup', 'toggleNewGroupActive', 'toggleGroupSelection']),
     ...mapActions(['uploadGroup']),
+    toggleGroupSelect ({id}) {
+      this.toggleGroupSelection({id})
+    },
     cancelCreatingGroup () {
       this.toggleNewGroupActive({ isActive: false })
     },

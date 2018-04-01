@@ -29,5 +29,10 @@ export default {
   },
   addFieldGroup (state, { group }) {
     Vue.set(state, 'fieldGroups', { ...state.fieldGroups, [group.id]: group })
+  },
+  toggleGroupSelection (state, { id }) {
+    Vue.set(state, 'newField',
+      { ...state.newField, fieldGroup: id }
+    )
   }
 }

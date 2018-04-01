@@ -28,6 +28,7 @@
       class="field-details__field-tags"></field-tags>
     <field-groups
       :fieldGroups="fieldGroups"
+      :selectedGroup="selectedGroup"
       class="field-details__field-groups"></field-groups>
   </section>
 </template>
@@ -57,6 +58,9 @@ export default {
     fieldGroups: {
       type: Array,
       default: () => []
+    },
+    selectedGroup: {
+      type:String
     }
   },
   computed: {

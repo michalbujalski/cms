@@ -18,5 +18,6 @@ export default {
     .map(key => {
       return { ...state.fieldGroups[key], id: key }
     }),
-  newGroup: state => state.newGroup
+  newGroup: state => state.newGroup,
+  currentGroup: state => state.newField.fieldGroup
 }

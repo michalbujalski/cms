@@ -8,6 +8,7 @@
       class="field-add__types"></field-types>
     <field-details
       class="field-add__details"
+      :selectedGroup="currentGroup"
       :fieldGroups="fieldGroups"
       :tagGroups="tagGroups"></field-details>
     <div class="field-add__controls">
@@ -34,7 +35,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['fieldTypes', 'newFieldType', 'tagGroups', 'fieldGroups'])
+    ...mapGetters(['fieldTypes', 'newFieldType', 'tagGroups', 'fieldGroups', 'currentGroup'])
   }
 }
 </script>
