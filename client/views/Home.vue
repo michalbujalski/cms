@@ -1,8 +1,16 @@
 <template>
   <div class="field-add">
     <h1 class="field-add__header">Commercial Property - Add Field</h1>
-    <field-types :types="fieldTypes" :currentType="newFieldType" @on-select="onTypeSelect" class="field-add__types"></field-types>
-    <field-details class="field-add__details" :tagGroups="tagGroups"></field-details>
+    <field-types
+      :types="fieldTypes"
+      :currentType="newFieldType"
+      @on-select="onTypeSelect"
+      class="field-add__types"></field-types>
+    <field-details
+      class="field-add__details"
+      :selectedGroup="currentGroup"
+      :fieldGroups="fieldGroups"
+      :tagGroups="tagGroups"></field-details>
     <div class="field-add__controls">
       <button class="button field-add__controls__btn-save">Save Changes</button>
       <span class="field-add__controls__void"></span>
@@ -27,7 +35,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['fieldTypes', 'newFieldType', 'tagGroups'])
+    ...mapGetters(['fieldTypes', 'newFieldType', 'tagGroups', 'fieldGroups', 'currentGroup'])
   }
 }
 </script>

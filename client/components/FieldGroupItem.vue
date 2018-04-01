@@ -1,19 +1,32 @@
 <template>
   <div class="group-item" @click="toggleSelected" :class="{'group-item--selected':selected}">
-    <h5 class="group-item__title">Rental Vehicle Coverage Package</h5>
-    <div class="group-item__subtitle">7 other inputs</div>
+    <h5 class="group-item__title">{{title}}</h5>
+    <div class="group-item__subtitle">{{`${usagesNum} other inputs`}}</div>
   </div>
 </template>
 <script>
 export default {
-  data () {
-    return {
-      selected: false
+  props: {
+    id: {
+      type: String,
+      required: true
+    },
+    selected:{
+      type: Boolean,
+      default: false
+    },
+    usagesNum: {
+      type: Number,
+      default: 0
+    },
+    title: {
+      type: String,
+      required: true
     }
   },
   methods: {
     toggleSelected (){
-      this.selected = !this.selected
+      this.$emit('on-select', { id: this.id })
     }
   }
 }
