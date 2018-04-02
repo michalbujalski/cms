@@ -12,7 +12,7 @@
       :fieldGroups="fieldGroups"
       :tagGroups="tagGroups"></field-details>
     <div class="field-add__controls">
-      <button class="button field-add__controls__btn-save">Save Changes</button>
+      <button class="button field-add__controls__btn-save" :disabled="!isNewFormValid">Save Changes</button>
       <span class="field-add__controls__void"></span>
       <button class="button field-add__controls__btn-cancel">Cancel Changes</button>
       <button class="button field-add__controls__btn-delete">Delete Input</button>
@@ -35,7 +35,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['fieldTypes', 'newFieldType', 'tagGroups', 'fieldGroups', 'currentGroup'])
+    ...mapGetters([
+      'fieldTypes',
+      'newFieldType',
+      'tagGroups',
+      'fieldGroups',
+      'currentGroup',
+      'isNewFormValid'
+      ])
   }
 }
 </script>

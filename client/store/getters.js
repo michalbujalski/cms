@@ -19,5 +19,9 @@ export default {
       return { ...state.fieldGroups[key], id: key }
     }),
   newGroup: state => state.newGroup,
-  currentGroup: state => state.newField.fieldGroup
+  currentGroup: state => state.newField.fieldGroup,
+  isNewFormValid: state => {
+    const { displayLabel, referenceName, type } = state.newField
+    return type !== null && displayLabel.length > 2 && referenceName.length > 2
+  }
 }
