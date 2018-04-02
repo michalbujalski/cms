@@ -13,7 +13,7 @@
         <div
           class="field-details__form__field-params__error"
           v-show="errors.has('displayLabel')">
-          {{ displayLabelError }}
+          {{ errors.first('displayLabel') }}
         </div>
       </b-field>
       <b-field class="field-details__form__field-params field-input"
@@ -27,7 +27,7 @@
         <div
           class="field-details__form__field-params__error"
           v-show="errors.has('referenceName')">
-          {{ referenceNameError }}
+          {{ errors.first('referenceName') }}
         </div>
       </b-field>
       <b-field class="field-details__form__field-params field-input" label="Default value">
@@ -63,6 +63,8 @@
 import FieldGroups from './FieldGroups'
 import FieldTags from './FieldTags'
 import {mapMutations} from 'vuex'
+import {Validator} from 'vee-validate'
+
 export default {
   components: {
     FieldGroups,'field-tags': FieldTags
@@ -91,22 +93,6 @@ export default {
     }
   },
   computed: {
-    hasReferenceError () {
-      return this.errors.first('referenceName')
-    },
-    referenceNameError () {
-      return this.hasReferenceError !== null ? 
-            this.hasReferenceError.replace('referenceName', 'reference name') :
-            null
-    },
-    hasDisplayError () {
-      return this.errors.first('displayLabel')
-    },
-    displayLabelError () {
-      return this.hasDisplayError !== null ? 
-            this.hasDisplayError.replace('displayLabel', 'display label') :
-            null
-    },
     newFieldForm () {
       return {
         displayLabel: this.displayLabel,
