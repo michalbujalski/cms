@@ -31,7 +31,16 @@
         </div>
       </b-field>
       <b-field class="field-details__form__field-params field-input" label="Default value">
-        <b-input class="field-details__form__field-params__input" v-model="defaultValue"></b-input>
+        <b-input
+          class="field-details__form__field-params__input"
+          v-validate="{regex: validationRegex}"
+          v-model="defaultValue"
+          name="defaultValue"></b-input>
+        <div
+          class="field-details__form__field-params__error"
+          v-show="errors.has('defaultValue')">
+          {{ errors.first('defaultValue') }}
+        </div>
       </b-field>
       <b-field class="field-details__form__field-params field-input" label="Default validation"
         message="Any regex pattern can be used for input validation">
@@ -62,7 +71,7 @@ export default {
     return {
       displayLabel: '',
       defaultValue: '',
-      validationRegex: '',
+      validationRegex: '^([0-9]+)$',
       referenceName: '',
       selectedTags: [],
       selectedTagGroups: []
