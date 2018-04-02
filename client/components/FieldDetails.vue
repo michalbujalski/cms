@@ -73,7 +73,7 @@ export default {
     return {
       displayLabel: '',
       defaultValue: '',
-      validationRegex: '^([0-9]+)$',
+      validationRegex: '',
       referenceName: '',
       selectedTags: [],
       selectedTagGroups: []
