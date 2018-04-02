@@ -5,15 +5,42 @@
       <b-field class="field-details__form__field-params field-input"
         label="Display label"
         message="For display purposes, spaces allowed">
-        <b-input class="field-details__form__field-params__input" v-model="displayLabel"></b-input>
+        <b-input
+          class="field-details__form__field-params__input"
+          v-model="displayLabel"
+          name="displayLabel"
+          v-validate="'required|min:2'"></b-input>
+        <div
+          class="field-details__form__field-params__error"
+          v-show="errors.has('displayLabel')">
+          {{ errors.first('displayLabel') }}
+        </div>
       </b-field>
       <b-field class="field-details__form__field-params field-input"
         label="Reference name"
         message="Used to reference in calculations, no spaces allowed">
-        <b-input class="field-details__form__field-params__input" v-model="referenceName"></b-input>
+        <b-input
+          class="field-details__form__field-params__input"
+          v-validate="'required|min:2'"
+          name="referenceName"
+          v-model="referenceName"></b-input>
+        <div
+          class="field-details__form__field-params__error"
+          v-show="errors.has('referenceName')">
+          {{ errors.first('referenceName') }}
+        </div>
       </b-field>
       <b-field class="field-details__form__field-params field-input" label="Default value">
-        <b-input class="field-details__form__field-params__input" v-model="defaultValue"></b-input>
+        <b-input
+          class="field-details__form__field-params__input"
+          v-validate="{regex: validationRegex}"
+          v-model="defaultValue"
+          name="defaultValue"></b-input>
+        <div
+          class="field-details__form__field-params__error"
+          v-show="errors.has('defaultValue')">
+          {{ errors.first('defaultValue') }}
+        </div>
       </b-field>
       <b-field class="field-details__form__field-params field-input" label="Default validation"
         message="Any regex pattern can be used for input validation">
@@ -36,6 +63,8 @@
 import FieldGroups from './FieldGroups'
 import FieldTags from './FieldTags'
 import {mapMutations} from 'vuex'
+import {Validator} from 'vee-validate'
+
 export default {
   components: {
     FieldGroups,'field-tags': FieldTags
@@ -44,7 +73,7 @@ export default {
     return {
       displayLabel: '',
       defaultValue: '',
-      validationRegex: '',
+      validationRegex: '^([0-9]+)$',
       referenceName: '',
       selectedTags: [],
       selectedTagGroups: []
@@ -134,6 +163,11 @@ export default {
       align-content: flex-start;
     }
     &__field-params{
+      flex-direction: column;
+      &__error {
+        color: red;
+        font-size: 0.7rem;
+      }
       &:nth-child(3){
         margin-right: 100%;
       }
