@@ -11,5 +11,13 @@ export default {
         }
       })
     }, 1000)
+  },
+  createNewField ({ commit }) {
+    commit('initNewFieldCreate')
+    setTimeout(() => {
+      console.log('end')
+      // mock server response
+      commit('endNewFieldCreate', { isSuccess: true, error: null })
+    }, 1000)
   }
 }

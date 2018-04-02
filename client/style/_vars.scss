@@ -55,6 +55,9 @@ $btn-action-delete-bg: $bc-red;
 $btn-action-cancel-text: $bc-black;
 $btn-action-outline: $bc-green-medium-1;
 
+$modal-bg: $bc-white;
+$modal-border-radius: $border-radius;
+
 @mixin selected(){
   background-color: $section-selected-bg;
   color: $section-selected-text;

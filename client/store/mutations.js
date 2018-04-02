@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import initState from './initState'
 export default {
   setFieldType (state, { id }) {
     Vue.set(state.newField, 'type', id)
@@ -34,6 +35,21 @@ export default {
     const selection = state.newField.fieldGroup !== id ? id : null
     Vue.set(state, 'newField',
       { ...state.newField, fieldGroup: selection }
+    )
+  },
+  endNewFieldCreate (state, { isSuccess, error }) {
+    let newField = null
+    if (isSuccess) {
+      // reset to initial state
+      newField = { ...initState.newField, isSuccess: isSuccess, isLoading: false, error: null }
+    } else {
+      newField = { ...state.newField, isLoading: false, error: error, isSuccess: false }
+    }
+    Vue.set(state, 'newField', newField)
+  },
+  initNewFieldCreate (state) {
+    Vue.set(state, 'newField',
+      { ...state.newField, isLoading: true }
     )
   }
 }
