@@ -31,8 +31,9 @@ export default {
     Vue.set(state, 'fieldGroups', { ...state.fieldGroups, [group.id]: group })
   },
   toggleGroupSelection (state, { id }) {
+    const selection = state.newField.fieldGroup !== id ? id : null
     Vue.set(state, 'newField',
-      { ...state.newField, fieldGroup: id }
+      { ...state.newField, fieldGroup: selection }
     )
   }
 }
