@@ -5,12 +5,30 @@
       <b-field class="field-details__form__field-params field-input"
         label="Display label"
         message="For display purposes, spaces allowed">
-        <b-input class="field-details__form__field-params__input" v-model="displayLabel"></b-input>
+        <b-input
+          class="field-details__form__field-params__input"
+          v-model="displayLabel"
+          name="displayLabel"
+          v-validate="'required|min:2'"></b-input>
+        <div
+          class="field-details__form__field-params__error"
+          v-show="errors.has('displayLabel')">
+          {{ displayLabelError }}
+        </div>
       </b-field>
       <b-field class="field-details__form__field-params field-input"
         label="Reference name"
         message="Used to reference in calculations, no spaces allowed">
-        <b-input class="field-details__form__field-params__input" v-model="referenceName"></b-input>
+        <b-input
+          class="field-details__form__field-params__input"
+          v-validate="'required|min:2'"
+          name="referenceName"
+          v-model="referenceName"></b-input>
+        <div
+          class="field-details__form__field-params__error"
+          v-show="errors.has('referenceName')">
+          {{ referenceNameError }}
+        </div>
       </b-field>
       <b-field class="field-details__form__field-params field-input" label="Default value">
         <b-input class="field-details__form__field-params__input" v-model="defaultValue"></b-input>
@@ -64,6 +82,22 @@ export default {
     }
   },
   computed: {
+    hasReferenceError () {
+      return this.errors.first('referenceName')
+    },
+    referenceNameError () {
+      return this.hasReferenceError !== null ? 
+            this.hasReferenceError.replace('referenceName', 'reference name') :
+            null
+    },
+    hasDisplayError () {
+      return this.errors.first('displayLabel')
+    },
+    displayLabelError () {
+      return this.hasDisplayError !== null ? 
+            this.hasDisplayError.replace('displayLabel', 'display label') :
+            null
+    },
     newFieldForm () {
       return {
         displayLabel: this.displayLabel,
@@ -134,6 +168,11 @@ export default {
       align-content: flex-start;
     }
     &__field-params{
+      flex-direction: column;
+      &__error {
+        color: red;
+        font-size: 0.7rem;
+      }
       &:nth-child(3){
         margin-right: 100%;
       }
