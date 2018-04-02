@@ -2,10 +2,10 @@
   <section class="field-types">
     <div class="field-types__header">Field types</div>
     <b-field class="field-types__name field-input" label="Field types">
-      <b-input value=""></b-input>
+      <b-input v-model="filter"></b-input>
     </b-field>
     <ul>
-      <li v-for="type in types" :key="type.id">
+      <li v-for="type in filteredTypes" :key="type.id">
         <field-type @on-select="onSelect" 
           :selected="type.id === currentType"
           :field-type="type"></field-type>
@@ -34,10 +34,18 @@ export default {
       this.$emit('on-select',{ id: payload.id })
     }
   },
-  mounted(){
+  computed: {
+    filteredTypes () {
+      return this.types.filter(type=>{
+        return type.name.toLowerCase().includes(this.filter) ||
+          type.definition.toLowerCase().includes(this.filter) ||
+          type.defaultDisplay.toLowerCase().includes(this.filter)
+      })
+    }
   },
   data () {
     return {
+      filter: '',
       currentlySelectedId: 0
     }
   }
