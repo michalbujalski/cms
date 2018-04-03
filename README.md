@@ -6,6 +6,7 @@ Libraries used:
 - Vue
 - Vuex
 - Bulma
+- SCSS
 
 ## Running project
 To start:
