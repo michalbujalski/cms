@@ -50,8 +50,6 @@
     <field-tags
       @on-tags-update="updateTags"
       :tagGroups="tagGroups"
-      :selectedTagGroups="selectedTagGroups"
-      @on-group-tag-update="updateGroupTags"
       class="field-details__field-tags"></field-tags>
     <field-groups
       :fieldGroups="fieldGroups"
@@ -75,8 +73,7 @@ export default {
       defaultValue: '',
       validationRegex: '',
       referenceName: '',
-      selectedTags: [],
-      selectedTagGroups: []
+      selectedTags: {}
     }
   },
   props: {
@@ -99,8 +96,7 @@ export default {
         defaultValue: this.defaultValue,
         validationRegex: this.validationRegex,
         referenceName: this.referenceName,
-        selectedTags: this.selectedTags,
-        selectedTagGroups: this.selectedTagGroups
+        selectedTags: this.selectedTags
       }
     },
   },
@@ -114,9 +110,6 @@ export default {
   },
   methods: {
     ...mapMutations(['updateFormField']),
-    updateGroupTags ({groupTags}) {
-      this.selectedTagGroups = groupTags
-    },
     updateTags ({ tags }) {
       this.selectedTags = tags
     }

@@ -11,8 +11,7 @@ export default {
         defaultValue: defaultValue,
         validationRegex: validationRegex,
         referenceName: referenceName,
-        tags: selectedTags,
-        selectedTagGroups: selectedTagGroups
+        selectedTags: selectedTags
       }
     )
   },
