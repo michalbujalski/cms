@@ -22,6 +22,9 @@
             :selected="tag.selected"
             @on-select="toggleTagSelect">
           </tag>
+          <p v-show="tags.length == 0" class="tags__container__group__tags__empty-info">
+            Select a tag grop to see individual tags
+          </p>
         </div>
       </div>
     </div>
@@ -152,6 +155,11 @@ export default {
       }
       &__tags{
         @include tags();
+        &__empty-info{
+          font-style:italic;
+          font-weight: 600;
+          font-size: 0.8rem;
+        }
       }
     }
   }
