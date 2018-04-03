@@ -8,7 +8,10 @@ export default {
     tags: ['iso#1'],
     groups: [],
     selectedTagGroups: [],
-    fieldGroup: null
+    fieldGroup: null,
+    isLoading: false,
+    hasError: null,
+    isSuccess: false
   },
   fieldTypes: [
     {

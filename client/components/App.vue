@@ -35,7 +35,7 @@ $link-focus-border: $primary;
 
 body {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1rem;
   font-family: -apple-system, BlinkMacSystemFont,
                'avenir next', avenir,
                helvetica, 'helvetica neue',
