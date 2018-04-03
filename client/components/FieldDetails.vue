@@ -158,8 +158,7 @@ export default {
     &__field-params{
       flex-direction: column;
       &__error {
-        color: red;
-        font-size: 0.7rem;
+        @include error();
       }
       &:nth-child(3){
         margin-right: 100%;
