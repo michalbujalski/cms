@@ -123,3 +123,8 @@ $modal-border-radius: $border-radius;
     outline-offset: -2px;
   }
 }
+
+@mixin error{
+  color: red;
+  font-size: 0.7rem;
+}

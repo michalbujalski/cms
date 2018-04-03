@@ -12,7 +12,8 @@ const dictionary = {
     attributes: {
       displayLabel: 'display label',
       referenceName: 'reference name',
-      defaultValue: 'default value'
+      defaultValue: 'default value',
+      newGroupTitle: 'group title'
     }
   }
 }

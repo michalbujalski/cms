@@ -1,11 +1,20 @@
 <template>
   <div clas="field-groups__add-new">
     <b-field class="field-groups__add-new__field field-input" label="New group name">
-      <b-input class="field-groups__add-new__field__input" v-model="newGroupTitle" :disabled="isLoading"></b-input>
+      <b-input class="field-groups__add-new__field__input"
+        v-model="newGroupTitle"
+        v-validate="'required|min:2'"
+        name="newGroupTitle"
+        :disabled="isLoading"></b-input>
+      <div
+        class="field-groups__add-new__field__error"
+        v-show="errors.has('newGroupTitle')">
+        {{ errors.first('newGroupTitle') }}
+      </div>
     </b-field>
     <div class="field-groups__add-new__actions" v-show="!isLoading">
       <button @click="cancelAddingNewGroup" class="button field-groups__add-new__actions__btn-cancel">Cancel</button>
-      <button @click="saveNewGroup" class="button field-groups__add-new__actions__btn-save">Save</button>
+      <button @click="saveNewGroup" :disabled="errors.has('newGroupTitle')" class="button field-groups__add-new__actions__btn-save">Save</button>
     </div>
     <img v-show="isLoading" class="field-groups__add-new__progress" src="/static/progress.webp"><img>
   </div>
@@ -45,7 +54,6 @@ $height: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: red;
   &__progress{
     width: 30px;
     height: 30px;
@@ -66,6 +74,10 @@ $height: 32px;
     }
   }
   &__field{
+    flex-direction: column;
+    &__error{
+      @include error()
+    }
   }
 }
 </style>
