@@ -134,7 +134,7 @@ export default {
   width: 100%;
   display: grid;
   grid-template-columns: auto 275px;
-  grid-template-rows: 46px auto 180px;
+  grid-template-rows: 46px auto auto;
   grid-column-gap: 30px;
   background-color: $section-main-bg;
   &__field-tag-groups{

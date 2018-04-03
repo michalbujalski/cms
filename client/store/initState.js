@@ -45,6 +45,9 @@ export default {
     ],
     'tag3': [
       'tag1', 'tag2', 'tag3', 'tag4'
+    ],
+    'tag4': [
+      'tag14', 'tag42', 'tag43', 'tag44', 'tag45', 'tag46'
     ]
   },
   fieldGroups: {

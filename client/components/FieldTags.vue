@@ -13,9 +13,9 @@
             ></tag>
         </div>
       </div>
-      <div class="tags__container__tag-items">
-        <h6 class="tags__container__tag-items__header">Tags</h6>
-        <div class="tags__container__tag-items__tags">
+      <div class="tags__container__group">
+        <h6 class="tags__container__group__header">Tags</h6>
+        <div class="tags__container__group__tags">
           <tag v-for="tag in tags"
             :key="tag.name"
             :name="tag.name"
@@ -95,35 +95,40 @@ export default {
 }
 </script>
 <style lang="scss">
+@import "~bulma/sass/utilities/_all";
 @mixin header(){
   font-weight: bold;
   font-size: 0.9rem;
 }
 @mixin tags(){
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  flex-flow: row wrap;
   padding-top: 8px;
 }
 .tags{
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   &__container{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    &__group{
-      flex: 1;
-      min-width: 150px;
-      &__header{
-        @include header();
-      }
-      &__tags{
-        @include tags();
-      }
+    min-height: 130px;
+    flex-flow: row nowrap;
+    @include mobile(){
+      flex-flow: row wrap;
     }
-    &__tag-items{
-      flex: 1;
-      min-width: 150px;
+    @include tablet-only(){
+      flex-flow: row wrap;
+    }
+    &__group{
+      &:first-child{
+        margin-right: 4px;
+      }
+      &:last-child{
+        margin-left: 4px;
+      }
+      flex-grow: 1;
+      width: 100%;
       &__header{
         @include header();
       }
@@ -135,7 +140,6 @@ export default {
   &__header{
     align-self: left;
     font-size: 1rem;
-    align-self: stretch;
     font-weight: bold;
     padding-bottom: 15px;
     padding-top: 8px;
