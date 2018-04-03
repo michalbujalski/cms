@@ -40,8 +40,9 @@ export default {
     onTypeSelect({id}){
       this.setFieldType({id})
     },
-    onSubmit(){
-      this.createNewField()
+    async onSubmit(){
+      await this.createNewField()
+      this.$toast.open("Field created")
     }
   },
   computed: {
@@ -52,7 +53,8 @@ export default {
       'fieldGroups',
       'currentGroup',
       'isNewFormValid',
-      'newField'
+      'newField',
+      'createNewFieldFinished'
       ])
   }
 }
@@ -77,6 +79,7 @@ export default {
     grid-column-end: 3;
     font-weight: 200;
     padding-bottom: 32px;
+    font-size: 2rem;
   }
   &__types{
     grid-column-start: 1;

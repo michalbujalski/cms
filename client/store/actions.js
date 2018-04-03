@@ -14,10 +14,14 @@ export default {
   },
   createNewField ({ commit }) {
     commit('initNewFieldCreate')
-    setTimeout(() => {
-      console.log('end')
-      // mock server response
-      commit('endNewFieldCreate', { isSuccess: true, error: null })
-    }, 1000)
+    return new Promise((resolve, reject) => {
+      setTimeout(
+        () => {
+          // mock server response
+          commit('endNewFieldCreate', { isSuccess: true, error: null })
+          resolve()
+        }
+      , 1000)
+    })
   }
 }

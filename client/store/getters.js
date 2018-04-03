@@ -24,5 +24,6 @@ export default {
     const { displayLabel, referenceName, type } = state.newField
     return type !== null && displayLabel.length > 2 && referenceName.length > 2
   },
-  newField: state => state.newField
+  newField: state => state.newField,
+  createNewFieldFinished: state => state.newField.isSuccess === true
 }
