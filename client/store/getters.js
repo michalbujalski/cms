@@ -7,11 +7,9 @@ export default {
         name: key,
         tags: state.tagGroups[key].map(tag => {
           return {
-            name: tag,
-            selected: state.newField.tags.includes(tag)
+            name: tag
           }
-        }),
-        selected: state.newField.selectedTagGroups.includes(key)
+        })
       }
     }),
   fieldGroups: state => Object.keys(state.fieldGroups)

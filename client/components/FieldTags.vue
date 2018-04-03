@@ -5,7 +5,7 @@
       <div class="tags__container__group">
         <h6 class="tags__container__group__header">Tag group</h6>
         <div class="tags__container__group__tags">
-          <tag v-for="tagGroup in tagGroups"
+          <tag v-for="tagGroup in groups"
             :key="tagGroup.name"
             :name="tagGroup.name"
             :selected="tagGroup.selected"
@@ -39,57 +39,75 @@ export default {
       type: Array,
       default: () => []
     },
-    selectedTagGroup: {
-      type: Array,
-      default: () => []
+  },
+  data () {
+    return {
+      selectedGroups: {}
     }
   },
   methods: {
-    notifyTagsChanged (tags) {
-      this.$emit('on-tags-update',
-        {
-          tags: tags
-        }
-      )
-    },
-    //Toggle (append or delete) tag
-    getSelected ({name, tags}) {
-      const rawTags = tags.filter(tag=>tag.selected).map(tag=>tag.name)
-      if(rawTags.includes(name)){
-        return rawTags.filter(tagName=>tagName !== name)
+    toggleGroupTagSelect (groupTagName) {
+      const selectedGroup = this.selectedGroups[groupTagName]
+      if(!!selectedGroup){
+          //remove group tag
+          const updatedGroups = {...this.selectedGroups}
+          delete updatedGroups[groupTagName]
+          this.selectedGroups = updatedGroups
       }else{
-        return rawTags.concat(name)
+          //add group tag
+          const groupToAdd = this.tagGroups.find(tag=>tag.name===groupTagName)
+          const tags = groupToAdd.tags.map(tag=>{
+            return {...tag, selected: true}
+          })
+          const newSelectedGroup = {...groupToAdd, tags: tags, selected: true}
+          this.selectedGroups = {...this.selectedGroups, [newSelectedGroup.name]: newSelectedGroup}
       }
     },
-    toggleGroupTagSelect (groupTagName) {
-      const selectedGroupsKeys = this.getSelected({ name: groupTagName, tags: this.tagGroups })
-      this.$emit('on-group-tag-update', {
-        groupTags: selectedGroupsKeys
-      })
-
-      //If group uselected unselect also tags belonging to it
-      const selectedTagsRaw = this.tagGroups
-        .filter( tagGroup => selectedGroupsKeys.includes(tagGroup.name))
-        .map(tagGroup => tagGroup.tags)
-        .reduce((prev, next)=>{
-          return prev.concat(next)
-        }, [])
-        .map(tag=>tag.name)
-      
-      this.notifyTagsChanged(selectedTagsRaw)
-    },
     toggleTagSelect (tagName) {
-      this.notifyTagsChanged(this.getSelected({ name: tagName, tags: this.tags }))
+      this.selectedGroups = 
+        Object.entries(this.selectedGroups)
+          .map(([key, value]) => {
+            // find group containing tag name
+            if(!!value.tags.find(tag=>tag.name===tagName)){
+              // toggle tag selection
+              const updatedTags = value.tags.map(tag=>{
+                if(tag.name===tagName){
+                  return {...tag, selected: !tag.selected}
+                }else{
+                  return tag
+                }
+              })
+              return [key, {...value, tags: updatedTags}]
+            }
+            return [key, value]
+          })
+          .reduce((prev,[key, value])=>{
+            prev[key] = value
+            return prev
+          },{})
+    }
+  },
+  watch: {
+    selectedGroups (tags) {
+      this.$emit('on-tags-update', { tags })
     }
   },
   computed: {
+    groups () {
+      return this.tagGroups.map(group=>{
+        if(!!this.selectedGroups[group.name]){
+          return {...group, selected: this.selectedGroups[group.name].selected}
+        }else{
+          return {...group, selected: false}
+        }
+      })
+    },
     tags () {
-      return [].concat.apply(
-        [],
-        this.tagGroups
-          .filter(group=>group.selected)
-          .map(group=>group.tags)
-      )
+      return Object.values(this.selectedGroups)
+        .map(group=>group.tags)
+        .reduce((prev, next)=>{
+          return prev.concat(next)
+        },[])
     }
   }
 }
